@@ -1,0 +1,61 @@
+{% extends "3_panel_template.html.twig" %}
+
+{% block header %}
+<h1>Shoe Portal</h1>
+<h4>Brand Distribution Management Tool</h4>
+{% endblock %}
+
+{% block controls %}
+    <h2>Manage Stores:</h2>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3>Add a store:</h3>
+        </div>
+        <div class="panel-body">
+            <form action="/store_list" method="post">
+                <div class="form-group">
+                    <label for="name">New Store Name</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="target_market">Target Market</label>
+                    <input type="text" name="target_market" required>
+                </div>
+                <button class="btn btn-info" type="submit" name="button">Create New Store</button>
+            </form>
+        </div>
+        <div class="panel-heading">
+            <h3>Navigation</h3>
+        </div>
+        <div class="panel-body">
+            <form method="get">
+                <button class="btn btn-info" type="submit" name="home" formaction="/brand_list">View Brand List</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block list %}
+    <div class="row">
+        <h2>Store List:</h2>
+    {% if stores is not empty %}
+        {% for store in stores %}
+            <div class="col-md-4 ">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4>{{store.getName}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <h4>Primary Market Segment: </h4>
+                        <h4>{{store.getTargetMarket}}</h4>
+                        <form method="get">
+                            <button class="btn btn-warning" type="submit" name="store" formaction="/store_detail/{{store.getId}}">{{store.getName}} Detail</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+{% endblock %}
