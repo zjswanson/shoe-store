@@ -23,7 +23,7 @@
             $result = array($test_store->getName(), $test_store->getTargetMarket(), $test_store->getId());
             $expected_result = array($name,$target_market,$id);
             // Assert
-            $this->assertEquals($result, $expected_result);
+            $this->assertEquals($expected_result, $result);
         }
 
         function test_setters()
@@ -33,16 +33,18 @@
             $name = 'ShoEmporium';
             $target_market = "discount";
             $test_store = new Store ($name,$target_market,$id);
-            $id = 1;
+
             $name2 = 'Fancy Feet';
             $target_market2 = "luxury";
             // Act
             $test_store->setName($name2);
-            $test_store->setName($target_market2);
+            $test_store->setTargetMarket($target_market2);
+
             $result = array($test_store->getName(), $test_store->getTargetMarket(), $test_store->getId());
             $expected_result = array($name2,$target_market2,$id);
+
             // Assert
-            $this->assertEquals($result, $expected_result);
+            $this->assertEquals($expected_result, $result);
         }
     }
 ?>
