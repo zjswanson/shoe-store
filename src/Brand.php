@@ -35,5 +35,23 @@
         {
             return $this->id;
         }
+
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO brands (name, market_segment) VALUES ('{$this->getName()}', '{$this->getMarketSegment()}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        static function getAll()
+        {
+            $query = $GLOBALS['DB']->query("SELECT * FROM brands;");
+            $found_brands = $query->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Brand", array('name', 'market_segment', 'id'));
+            return $found_brands;
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM brands;");
+        }
     }
 ?>
