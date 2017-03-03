@@ -36,6 +36,19 @@
             return $this->id;
         }
 
+        function save()
+        {
 
+        }
+
+        static function getAll()
+        {
+
+        }
+
+        static function deleteAll()
+        {
+            
+        }
     }
 ?>
