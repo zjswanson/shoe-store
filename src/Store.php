@@ -44,12 +44,13 @@
 
         function updateProperty($property, $value)
         {
-
+            $GLOBALS['DB']->exec("UPDATE stores SET {$property} = '{$value}' WHERE  id = {$this->getId()};");
+            $this->$property = $value;
         }
 
         function delete()
         {
-            
+            $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->getId()};");
         }
 
         static function getAll()

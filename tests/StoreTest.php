@@ -145,7 +145,7 @@
             $result = Store::getAll();
 
             //Assert
-            $this->assertEquals($test_store,$result);
+            $this->assertEquals([$test_store],$result);
         }
     }
 ?>
