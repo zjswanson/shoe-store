@@ -147,5 +147,53 @@
             //Assert
             $this->assertEquals([$test_store],$result);
         }
+
+        function test_addBrand()
+        {
+            // Arrange
+            $brand_name = 'Nikus';
+            $market_segment = "upscale athletic";
+            $test_brand = new Brand ($name,$market_segment);
+            $test_brand->save();
+
+            $name = 'ShoEmporium';
+            $target_market = "discount";
+            $test_store = new Store ($name,$target_market);
+            $test_store->save();
+
+            //Act
+            $test_store->addBrand($test_brand->getId());
+            $result = $test_store->getBrands();
+
+            //Assert
+            $this->assertEquals([$test_brand],$result);
+        }
+
+        function test_getBrands()
+        {
+            // Arrange
+            $brand_name = 'Nikus';
+            $market_segment = "upscale athletic";
+            $test_brand = new Brand ($name,$market_segment);
+            $test_brand->save();
+
+            $name2 = 'Reeblic';
+            $market_segment2 = "value athletic";
+            $test_brand2 = new Brand ($name2,$market_segment2);
+            $test_brand2->save();
+
+            $name = 'ShoEmporium';
+            $target_market = "discount";
+            $test_store = new Store ($name,$target_market);
+            $test_store->save();
+            $test_store->addBrand($test_brand->getId());
+            $test_store->addBrand($test_brand2->getId());
+
+            //Act
+            $result = $test_store->getBrands();
+
+            //Assert
+            $this->assertEquals([$test_brand, $test_brand2],$result);
+        }
     }
 ?>
