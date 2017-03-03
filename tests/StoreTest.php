@@ -16,6 +16,7 @@
         {
             Store::deleteAll();
         }
+
         function test_getters()
         {
             // Arrange
@@ -79,12 +80,32 @@
             $test_store2 = new Store ($name2,$target_market2);
             $test_store2->save();
 
-
             // Act
             $result = Store::getAll();
 
             //Assert
             $this->assertEquals([$test_store, $test_store2],$result);
+        }
+
+        function find()
+        {
+            // Arrange
+            $name = 'ShoEmporium';
+            $target_market = "discount";
+            $test_store = new Store ($name,$target_market);
+            $test_store->save();
+
+            $name2 = 'Fancy Feet';
+            $target_market2 = "luxury";
+            $test_store2 = new Store ($name2,$target_market2);
+            $test_store2->save();
+
+            // Act
+
+            $result = Store::find($test_store2->getId());
+
+            //Assert
+            $this->assertEquals($test_store2,$result);
         }
     }
 ?>
