@@ -9,12 +9,37 @@
 _This is a simple application designed to demonstrate interaction with a mysql database using php.  The application is a utility for a salon manager to organize the stylists they employ, along with those stylist's client lists.  The app will communicate with a mysql database and allow all basic CRUD functionality across two tables of records._
 
 ## Application Behaviors
-```
-Behavior:
-Sample Input:
-Sample Output:
-```
 
+Application behaviors are organized along RESTful principles.  The application has two primary resources: Stores and Brands.  The application has two sets of behaviors for handling these resources; one set for handling the resource as a list and another for handling the specific element of that list.  Routes in the application are organized around these behaviors.
+
+|Resource:| Store List ||
+| ------ | ------ | ------ |
+| Feature Category | Behaviors | Use Examples|
+| Display: | Page displays a list of all Stores and their details | "ShoEmporium, Fancy Feet, etc." |
+|Navigation: | Nav features to visit a specific Store or the list of Brands| "click on a store button to visit specific page" |
+|Input: | Forms for adding new store to list, button to delete all stores | "Forms are completed, new store appears in list"|
+
+|Resource:| Brand List ||
+| ------ | ------ | ------ |
+| Feature Category | Behaviors | Use Examples|
+| Display: | Page displays a list of all Brands and their details | "Neekus, Reeblik, etc." |
+|Navigation: | Nav features to visit a specific Brand or the list of Stores| "click on a brand button to visit specific page" |
+|Input: | Forms for adding new Brand to list, button to delete all Brands | "Forms are completed, new Brand appears in list"|
+
+|Resource:| Specific Store ||
+| ------ | ------ | ------ |
+| Feature Category | Behaviors | Use Examples|
+| Display: | Page displays a list of current store's details and list of store's brands | "ShoEmporium - market segment: discount.  Brands: Neekus, Reeblik" |
+|Navigation: | Nav features to visit a specific Brand or the lists of Brands or Stores | "click on a store button to visit specific page" |
+|Input: | Forms for editing current store details, adding brands to current store, button to delete current store | "Add Form is completed, new brand appears in list", "edit form is completed, store details are updated in display"|
+
+
+|Resource:| Specific Brand ||
+| ------ | ------ | ------ |
+| Feature Category | Behaviors | Use Examples|
+| Display: | Page displays a list of current brand's details and list of brand's stores | "Neekus - target market: upscale athletic.  Stores: ShoEmporium, Fancy Feet" |
+|Navigation: | Nav features to visit a specific Brand or the lists of Brands or Stores | "click on a brand button to visit specific page" |
+|Input: | Forms for editing current brand details, adding stores to current brand, button to delete current brand | "Add Form is completed, new store appears in list", "edit form is completed, brand details are updated in display"|
 
 ## Setup/Installation Requirements
 

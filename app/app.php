@@ -22,10 +22,25 @@
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
 
+
+    // Landing page.
     $app->get("/", function() use ($app) {
         return $app['twig']->render('landing.html.twig');
     });
 
+    // Store List: see list of stores, add stores, delete all stores, nav to specific stores, brand list
+    $app->get("/store_list", function() use ($app) {
+
+        return $app['twig']->render('store_list.html.twig', array('stores' => Store::getAll()));
+    });
+
+
+    // Brand List: see list of brands, add brands, delete all brands, nav to specific stores, store list
+
+
+    // Specific Store: see list of store's brands, add brand to store, nav to specific brand , store list, brand list
+
+    // Specific Brand: see list of brand's stores, add store to brand, nav to specific store , store list, store list
 
     // This route is here to auto populate data and relationships for UI testing.
     $app->get("/populate_values", function() use ($app) {
