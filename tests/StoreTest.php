@@ -16,6 +16,7 @@
         protected function tearDown()
         {
             Store::deleteAll();
+            Brand::deleteAll();
         }
 
         function test_getters()
@@ -102,7 +103,6 @@
             $test_store2->save();
 
             // Act
-
             $result = Store::find($test_store2->getId());
 
             //Assert
