@@ -107,5 +107,45 @@
             //Assert
             $this->assertEquals($test_store2,$result);
         }
+        function test_delete()
+        {
+            // Arrange
+            $name = 'ShoEmporium';
+            $target_market = "discount";
+            $test_store = new Store ($name,$target_market);
+            $test_store->save();
+
+            $name2 = 'Fancy Feet';
+            $target_market2 = "luxury";
+            $test_store2 = new Store ($name2,$target_market2);
+            $test_store2->save();
+
+            // Act
+            $test_store->delete();
+            $result = Store::getAll();
+
+            //Assert
+            $this->assertEquals([$test_store2],$result);
+        }
+
+        function test_updateProperty()
+        {
+            // Arrange
+            $name = 'ShoEmporium';
+            $target_market = "discount";
+            $test_store = new Store ($name,$target_market);
+            $test_store->save();
+
+            $name2 = 'Fancy Feet';
+            $target_market2 = "luxury";
+
+            // Act
+            $test_store->updateProperty("name",$name2);
+            $test_store->updateProperty("target_market",$target_market2);
+            $result = Store::getAll();
+
+            //Assert
+            $this->assertEquals($test_store,$result);
+        }
     }
 ?>

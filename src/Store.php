@@ -42,6 +42,16 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
+        function updateProperty($property, $value)
+        {
+
+        }
+
+        function delete()
+        {
+            
+        }
+
         static function getAll()
         {
             $query = $GLOBALS['DB']->query("SELECT * FROM stores;");
