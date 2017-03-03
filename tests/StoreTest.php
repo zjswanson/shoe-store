@@ -4,6 +4,7 @@
     * @backupStaticAttributes disabled
     */
     require_once 'src/Store.php';
+    require_once 'src/Brand.php';
 
     $server = 'mysql:host=localhost:8889;dbname=shoes_test';
     $username = 'root';
@@ -153,7 +154,7 @@
             // Arrange
             $brand_name = 'Nikus';
             $market_segment = "upscale athletic";
-            $test_brand = new Brand ($name,$market_segment);
+            $test_brand = new Brand ($brand_name,$market_segment);
             $test_brand->save();
 
             $name = 'ShoEmporium';
@@ -174,12 +175,12 @@
             // Arrange
             $brand_name = 'Nikus';
             $market_segment = "upscale athletic";
-            $test_brand = new Brand ($name,$market_segment);
+            $test_brand = new Brand ($brand_name,$market_segment);
             $test_brand->save();
 
-            $name2 = 'Reeblic';
+            $brand_name2 = 'Reeblic';
             $market_segment2 = "value athletic";
-            $test_brand2 = new Brand ($name2,$market_segment2);
+            $test_brand2 = new Brand ($brand_name2,$market_segment2);
             $test_brand2->save();
 
             $name = 'ShoEmporium';
