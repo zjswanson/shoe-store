@@ -44,12 +44,17 @@
 
         function addStore($store_id)
         {
-
+            $GLOBALS['DB']->exec("INSERT INTO stores_brands (store_id, brand_id) VALUES ({$store_id}, {$this->getId()});");
         }
 
         function getStores()
         {
-            
+            $query = $GLOBALS['DB']->query("SELECT stores.* FROM
+                stores JOIN stores_brands ON (stores.id = stores_brands.store_id)
+                JOIN brands ON (stores_brands.brand_id = brands.id)
+                WHERE brands.id = {$this->getId()};");
+            $found_stores = $query->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Store", array('name', 'target_market', 'id'));
+            return $found_stores;
         }
 
         static function getAll()
