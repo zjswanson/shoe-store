@@ -87,7 +87,7 @@
             $this->assertEquals([$test_store, $test_store2],$result);
         }
 
-        function find()
+        function test_find()
         {
             // Arrange
             $name = 'ShoEmporium';
