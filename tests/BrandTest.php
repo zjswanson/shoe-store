@@ -12,6 +12,11 @@
 
     class BrandTest extends PHPUnit_Framework_TestCase
     {
+        protected function tearDown()
+        {
+            Brand::deleteAll();
+        }
+
         function test_getters()
         {
             // Arrange
@@ -46,6 +51,42 @@
             // Assert
             $this->assertEquals($expected_result, $result);
         }
+
+        function test_save()
+        {
+            // Arrange
+            $name = 'Nikus';
+            $market_segment = "upscale athletic";
+            $test_brand = new Brand ($name,$market_segment);
+
+            // Act
+            $test_brand->save();
+            $result = Brand::getAll();
+
+            // Assert
+            $this->assertEquals([$test_brand], $result);
+        }
+
+        function test_getAll()
+        {
+            // Arrange
+            $name = 'Nikus';
+            $market_segment = "upscale athletic";
+            $test_brand = new Brand ($name,$market_segment);
+            $test_brand->save();
+
+            $name2 = 'Reeblic';
+            $market_segment2 = "value athletic";
+            $test_brand2 = new Brand ($name2,$market_segment2);
+            $test_brand2->save();
+
+            // Act
+            $result = Brand::getAll();
+
+            // Assert
+            $this->assertEquals([$test_brand, $test_brand2], $result);
+        }
+
     }
 
 
