@@ -38,17 +38,20 @@
 
         function save()
         {
-
+            $GLOBALS['DB']->exec("INSERT INTO stores (name, target_market) VALUES ('{$this->getName()}', '{$this->getTargetMarket()}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
         static function getAll()
         {
-
+            $query = $GLOBALS['DB']->query("SELECT * FROM stores;");
+            $found_stores = $query->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, "Store", array('name', 'target_market', 'id'));
+            return $found_stores;
         }
 
         static function deleteAll()
         {
-            
+            $GLOBALS['DB']->exec("DELETE FROM stores;");
         }
     }
 ?>
