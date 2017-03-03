@@ -10,7 +10,7 @@ _This is a simple application designed to demonstrate interaction with a mysql d
 
 ## Application Behaviors
 ```
-Behavior: 
+Behavior:
 Sample Input:
 Sample Output:
 ```
@@ -31,6 +31,7 @@ Sample Output:
 * USE shoes;
 * CREATE TABLE stores (id serial PRIMARY KEY, name VARCHAR (255),target_market VARCHAR(255));
 * CREATE TABLE brands (id serial PRIMARY KEY, name VARCHAR(255), market_segment VARCHAR(255));
+CREATE TABLE stores_brands (id serial PRIMARY KEY, store_id INT, brand_id INT);
 * Then use either uses similar commands or use MAMP'S myphpadmin to copy the structure of this database into another called hair_salon_test.  The PHPUnit testing suite will use this database when you replicate the unit tests.
 
 

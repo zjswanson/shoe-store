@@ -87,6 +87,27 @@
             $this->assertEquals([$test_brand, $test_brand2], $result);
         }
 
+        function test_find()
+        {
+            // Arrange
+            $name = 'Nikus';
+            $market_segment = "upscale athletic";
+            $test_brand = new Brand ($name,$market_segment);
+            $test_brand->save();
+
+            $name2 = 'Reeblic';
+            $market_segment2 = "value athletic";
+            $test_brand2 = new Brand ($name2,$market_segment2);
+            $test_brand2->save();
+
+            // Act
+            $result = Brand::find($test_brand2->getId());
+
+            // Assert
+            $this->assertEquals($test_brand2, $result);
+        }
+
+
     }
 
 
