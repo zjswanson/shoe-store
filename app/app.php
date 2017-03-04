@@ -90,6 +90,17 @@
     });
 
     // Specific Brand: see list of brand's stores, add store to brand, nav to specific store , store list, store list
+    $app->get("/brand_detail/{brand_id}", function($brand_id) use ($app) {
+        $brand = Brand::find($brand_id);
+        $brand_stores = $brand->getStores();
+        return $app['twig']->render('brand_detail.html.twig', array('brand' => $brand, 'brand_stores' => $brand_stores, 'stores' => Store::getAll()));
+    });
+
+    $app->post("/brand_detail/add_store/{brand_id}", function($brand_id) use ($app) {
+        $brand = Brand::find($brand_id);
+        $brand->addStore($_POST['store']);
+        return $app->redirect("/brand_detail/{$brand_id}");
+    });
 
     // This route is here to auto populate data and relationships for UI testing.
     $app->get("/populate_values", function() use ($app) {

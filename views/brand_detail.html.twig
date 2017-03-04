@@ -1,0 +1,68 @@
+{% extends "3_panel_template.html.twig" %}
+
+{% block header %}
+<h1>Shoe Portal</h1>
+<h4>Brand Distribution Management Tool</h4>
+{% endblock %}
+
+{% block controls %}
+    <h2>Manage {{brand.getName}}:</h2>
+    <div class="panel panel-info">
+
+        <!--Add Brand form: updates join table to add existing brand to this brand -->
+        <div class="panel-heading">
+            <h3>Manage {{brand.getName}} Distribution</h3>
+        </div>
+        <div class="panel-body">
+        <form action="/brand_detail/add_store/{{brand.getId}}" method="post">
+                <select class="form-control" name="store">
+                    {% for store in stores %}
+                    <option value="{{store.getId}}">{{store.getName}}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn btn-info" type="submit" name="button">Distribute {{brand.getName}} to New Store</button>
+            </form>
+        </div>
+
+
+        <!-- Navigation: store list, brand list -->
+        <div class="panel-heading">
+            <h3>Navigation</h3>
+        </div>
+        <div class="panel-body">
+            <form method="get">
+                <button class="btn btn-info" type="submit" name="home" formaction="/store_list">View Store List</button>
+                <button class="btn btn-info" type="submit" name="home" formaction="/brand_list">View Brand List</button>
+            </form>
+        </div>
+
+
+    </div>
+{% endblock %}
+
+
+{% block list %}
+
+    <!-- Display List: list brands, button links to band_detail view with brand id -->
+    <div class="row">
+        <h2>Market Distribution (Segment: - {{brand.getMarketSegment}}):</h2>
+    {% if brand_stores is not empty %}
+        {% for store in brand_stores %}
+            <div class="col-md-4 ">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4>{{store.getName}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <h4>Primary Target Market: </h4>
+                        <h4>{{store.getTargetMarket}}</h4>
+                        <form method="get">
+                            <button class="btn btn-warning" type="submit" name="store" formaction="/store_detail/{{store.getId}}">{{store.getName}} Detail</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+{% endblock %}
