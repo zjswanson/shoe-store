@@ -1,0 +1,79 @@
+{% extends "3_panel_template.html.twig" %}
+
+{% block header %}
+<h1>Shoe Portal</h1>
+<h4>Brand Distribution Management Tool</h4>
+{% endblock %}
+
+{% block controls %}
+    <h2>Manage Brands:</h2>
+    <div class="panel panel-info">
+
+        <!--Add Brands form: links to post route for store_list  -->
+        <div class="panel-heading">
+            <h3>Add a Brand:</h3>
+        </div>
+        <div class="panel-body">
+            <form action="/brand_list/add" method="post">
+                <div class="form-group">
+                    <label for="name">New Brand Name</label>
+                    <input class="form-control" type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="market_segment">Primary Market Segment</label>
+                    <input class="form-control" type="text" name="market_segment" required>
+                </div>
+                <button class="btn btn-info" type="submit" name="button">Create New Brand</button>
+            </form>
+        </div>
+
+        <!-- Navigation:  -->
+        <div class="panel-heading">
+            <h3>Navigation</h3>
+        </div>
+        <div class="panel-body">
+            <form method="get">
+                <button class="btn btn-info" type="submit" name="home" formaction="/store_list">View Store List</button>
+            </form>
+        </div>
+
+        <!-- Delete All  -->
+        <div class="panel-heading">
+            <h3>Delete All</h3>
+        </div>
+        <div class="panel-body">
+            <form method="post">
+                <input type="hidden" name="_method" value="delete">
+                <button class="btn btn-danger" type="submit" name="delete" formaction="/brand_list/delete">Delete All Brands</button>
+                <p>Warning!  This action cannont be undone!</p>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block list %}
+
+    <!-- Display List: list brands, button links to brand_detail view  -->
+    <div class="row">
+        <h2>Brands List:</h2>
+    {% if brands is not empty %}
+        {% for brand in brands %}
+            <div class="col-md-4 ">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4>{{brand.getName}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <h4>Primary Market Segment: </h4>
+                        <h4>{{brand.getMarketSegment}}</h4>
+                        <form method="get">
+                            <button class="btn btn-warning" type="submit" name="brand" formaction="/brand_detail/{{brand.getId}}">{{brand.getName}} Detail</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+{% endblock %}

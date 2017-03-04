@@ -46,7 +46,20 @@
 
 
     // Brand List: see list of brands, add brands, delete all brands, nav to specific stores, store list
+    $app->get("/brand_list", function() use ($app) {
 
+        return $app['twig']->render('brand_list.html.twig', array('brands' => Brand::getAll()));
+    });
+    $app->post("/brand_list/add", function() use ($app) {
+        $new_brand = new Brand($_POST['name'], $_POST['market_segment']);
+        $new_brand->save();
+        return $app->redirect("/brand_list");
+    });
+
+    $app->delete("/brand_list/delete", function() use ($app) {
+        Brand::deleteAll();
+        return $app->redirect("/brand_list");
+    });
 
     // Specific Store: see list of store's brands, add brand to store, nav to specific brand , store list, brand list
     $app->get("/store_detail/{store_id}", function($store_id) use ($app) {
