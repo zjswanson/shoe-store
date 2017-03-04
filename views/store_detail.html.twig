@@ -9,19 +9,19 @@
     <h2>Manage Stores:</h2>
     <div class="panel panel-info">
 
-        <!--Add Stores form: links to post route for store_list  -->
+        <!--Add Stores form  -->
         <div class="panel-heading">
             <h3>Add a store:</h3>
         </div>
         <div class="panel-body">
-            <form action="/store_list/add" method="post">
+            <form action="/store_list" method="post">
                 <div class="form-group">
                     <label for="name">New Store Name</label>
-                    <input class="form-control" type="text" name="name" required>
+                    <input type="text" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="target_market">Target Market</label>
-                    <input class="form-control" type="text" name="target_market" required>
+                    <input type="text" name="target_market" required>
                 </div>
                 <button class="btn btn-info" type="submit" name="button">Create New Store</button>
             </form>
@@ -34,18 +34,6 @@
         <div class="panel-body">
             <form method="get">
                 <button class="btn btn-info" type="submit" name="home" formaction="/brand_list">View Brand List</button>
-            </form>
-        </div>
-
-        <!-- Delete All  -->
-        <div class="panel-heading">
-            <h3>Delete All</h3>
-        </div>
-        <div class="panel-body">
-            <form method="post">
-                <input type="hidden" name="_method" value="delete">
-                <button class="btn btn-danger" type="submit" name="delete" formaction="/store_list/delete">Delete All Stores</button>
-                <p>Warning!  This action cannont be undone!</p>
             </form>
         </div>
     </div>

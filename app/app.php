@@ -33,6 +33,15 @@
 
         return $app['twig']->render('store_list.html.twig', array('stores' => Store::getAll()));
     });
+    $app->post("/store_list/add", function() use ($app) {
+        $new_store = new Store($_POST['name'], $_POST['target_market']);
+        $new_store->save();
+        return $app->redirect("/store_list");
+    });
+    $app->delete("/store_list/delete", function() use ($app) {
+        Store::deleteAll();
+        return $app->redirect("/store_list");
+    });
 
 
     // Brand List: see list of brands, add brands, delete all brands, nav to specific stores, store list
