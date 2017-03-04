@@ -1,18 +1,30 @@
-{% extends "3_panel_template.html.twig" %}
-
-
-{% block header %}
-    <h1>Shoe Portal</h1>
-    <h4>Brand Distribution Management Tool</h4>
-{% endblock %}
-
-
-{% block controls %}
-
-{% endblock %}
-
-
-
-{% block list %}
-
-{% endblock %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/styles.css" type="text/css">
+        <meta charset="utf-8">
+        <title>Shoe Brand Manager</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="well">
+                <h1>Shoe Brand Distribution Portal</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Manage Stores</h2>
+                    <form method="get">
+                        <button class="btn btn-info" type="submit" name="home" formaction="/store_list">View Store List</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <h2>Manage Brands</h2>
+                    <form method="get">
+                        <button class="btn btn-info" type="submit" name="home" formaction="/brand_list">View Brand List</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

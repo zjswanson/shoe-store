@@ -38,6 +38,7 @@
         $new_store->save();
         return $app->redirect("/store_list");
     });
+
     $app->delete("/store_list/delete", function() use ($app) {
         Store::deleteAll();
         return $app->redirect("/store_list");
@@ -48,6 +49,32 @@
 
 
     // Specific Store: see list of store's brands, add brand to store, nav to specific brand , store list, brand list
+    $app->get("/store_detail/{store_id}", function($store_id) use ($app) {
+        $store = Store::find($store_id);
+        $store_brands = $store->getBrands();
+        return $app['twig']->render('store_detail.html.twig', array('store' => $store, 'store_brands' => $store_brands, 'brands' => Brand::getAll()));
+    });
+
+    $app->post("/store_detail/add_brand/{store_id}", function($store_id) use ($app) {
+        $store = Store::find($store_id);
+        $store->addBrand($_POST['brand']);
+        return $app->redirect("/store_detail/{$store_id}");
+    });
+
+    $app->patch("/store_detail/edit/{store_id}", function($store_id) use ($app) {
+        $store = Store::find($store_id);
+        if (!empty($_POST['name']))
+        { $store->updateProperty("name", $_POST['name']);}
+        if (!empty($_POST['target_market']))
+        { $store->updateProperty("target_market", $_POST['target_market']);}
+        return  $app->redirect("/store_detail/{$store_id}");
+    });
+
+    $app->delete("/store_detail/delete/{store_id}", function($store_id) use ($app) {
+        $store = Store::find($store_id);
+        $store->delete();
+        return $app->redirect("/store_list");
+    });
 
     // Specific Brand: see list of brand's stores, add store to brand, nav to specific store , store list, store list
 
